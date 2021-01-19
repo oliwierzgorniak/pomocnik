@@ -1,0 +1,19 @@
+.wealth {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.18rem;
+  margin-bottom: 0.4rem;
+}
+
+.checkboxes {
+  display: flex;
+}
+
+.checkboxes div:first-child {
+  margin-right: 0.8rem;
+}
+
+.checkboxes input {
+  margin-left: 0.5rem;
+  transform: scale(1.7);
+}

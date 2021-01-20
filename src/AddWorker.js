@@ -1,4 +1,5 @@
 import './AddWorker.css';
+import './Window.css';
 import more from './img/more.svg';
 import less from './img/less.svg';
 

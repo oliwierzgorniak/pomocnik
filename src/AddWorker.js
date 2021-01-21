@@ -6,10 +6,10 @@ import less from './img/less.svg';
 const AddWorker = props => {
   return (
     <div className="window">
-      <label for="buttons">
-        Mnożnik: <br /> <small>{props.workerMultiplyer}</small>
+      <label for="multiplier">
+        Mnożnik: <br /> <small>{props.workerMultiplier}</small>
       </label>
-      <div className="buttons" name="buttons">
+      <div className="buttons" name="muliplier">
         <button>
           <img src={less} alt="less"></img>
         </button>
@@ -17,10 +17,10 @@ const AddWorker = props => {
           <img src={more} alt="more"></img>
         </button>
       </div>
-      <label>
+      <label for="salary">
         Pensja: <br /> <small>{props.workerSalary}</small>
       </label>
-      <div className="buttons" name="buttons">
+      <div className="buttons" name="salary">
         <button>
           <img src={less} alt="less"></img>
         </button>
@@ -28,10 +28,10 @@ const AddWorker = props => {
           <img src={more} alt="more"></img>
         </button>
       </div>
-      <label>
+      <label for="insurance">
         Ubezpieczenie: <br /> <small>{props.workerInsurance}</small>
       </label>
-      <div className="buttons" name="">
+      <div className="buttons" name="ins  urance">
         <button>
           <img src={less} alt="less"></img>
         </button>

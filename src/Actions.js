@@ -15,10 +15,6 @@ const Actions = () => {
     setDice((Math.floor(Math.random() * 10) % 6) + 1);
   };
 
-  const [workerMultiplyer, setWorkerMultiplyer] = useState(3);
-  const [workerSalary, setWorkerSalary] = useState(5000);
-  const [workerInsurance, setWorkerInsurance] = useState(2000);
-
   return (
     <section className="actions">
       <button className="action" style={{ backgroundColor: '#3D5AFE' }}>

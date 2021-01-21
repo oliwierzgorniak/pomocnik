@@ -8,10 +8,10 @@ import './Expenses.css';
 import AddWorker from './AddWorker.js';
 
 function App() {
-  const [money, setMoney] = useState(100000);
-  const insurance = 500;
-  const salary = 10000;
-  const costs = 5000;
+  const [money, setMoney] = useState(0);
+  const [insurance, setInsurance] = useState(0);
+  const [salary, setSalary] = useState(0);
+  const [costs, setCosts] = useState(0);
 
   const payInsurance = () => {
     setMoney(money - insurance);
@@ -21,14 +21,24 @@ function App() {
     setMoney(money - salary - costs);
   };
 
+  const [workerMultiplier, setWorkerMultiplier] = useState(3);
+  const [workerSalary, setWorkerSalary] = useState(5000);
+  const [workerInsurance, setWorkerInsurance] = useState(2000);
+
+  const addWorker = () => {
+    setWorkerMultiplier(multiplier + workerMultiplier);
+    setWorkerSalary(salary + workerSalary);
+    setWorkerInsurance(insurance + workerInsurance);
+  };
+
   return (
     <div className="App">
-      <Goals money={money} things={0} workers={0} />
+      <Goals money={money} things={things} workers={0} />
       <Orders />
       <Expanses insurance={insurance} salary={salary} costs={costs} payInsurance={payInsurance} paySalaryAndCosts={paySalaryAndCosts} />
       <Credit />
       <Actions />
-      <AddWorker />
+      {false && <AddWorker workerMultiplier={workerMultiplier} workerSalary={workerSalary} workerInsurance={workerInsurance} />}
     </div>
   );
 }

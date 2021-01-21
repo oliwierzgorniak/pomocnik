@@ -1,10 +1,10 @@
-const Orders = () => {
+const Orders = props => {
   return (
     <section className="container" style={{ background: '#EF6C00' }}>
       <li>
-        <ul style={{ marginBottom: '.2rem', fontWeight: '700' }}>Mnożnik: 8</ul>
-        <ul>Rzuty kostką: 4</ul>
-        <ul>Dodatek: 5 000</ul>
+        <ul style={{ marginBottom: '.2rem', fontWeight: '700' }}>Mnożnik: {props.multiplier}</ul>
+        <ul>Rzuty kostką: {props.diceRolls}</ul>
+        <ul>Dodatek: {props.bonus}</ul>
       </li>
     </section>
   );

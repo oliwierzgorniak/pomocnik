@@ -8,7 +8,12 @@
   color: black;
   border-radius: 8px;
   text-align: center;
-  padding: 0.6rem 0.8rem;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80vw;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
 }
 
 .window label {
@@ -37,4 +42,36 @@ small {
   color: white;
   font-size: 1rem;
   margin-top: 0.7rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.xButton,
+.changeButton {
+  background: none;
+  border: none;
+}
+
+.xButton {
+  justify-self: right;
+  align-self: flex-end;
+  transform: scale(1.6);
+}
+
+.changeButton {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  transform: scale(2);
+  transition: all 0.2s ease-in-out;
+}
+
+.changeButton:hover {
+  transform: scale(1.8);
+}
+
+.expansesContainer {
+  position: relative;
 }

@@ -17,8 +17,8 @@
   border-radius: 6px;
 }
 
-.expenses button::before {
-  content: '';
+.minusButton::before {
+  content: "";
   display: block;
   width: 85%;
   margin: auto;

@@ -61,7 +61,7 @@ const Goals = props => {
               <button
                 onClick={() => {
                   if (props.money < 10000) return;
-                  props.setCredit1(props.money - 10000);
+                  props.setMoney(props.money - 10000);
                 }}
               >
                 <img src={less} alt="less"></img>

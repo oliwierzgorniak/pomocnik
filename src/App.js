@@ -10,6 +10,7 @@ import AddWorker from "./AddWorker.js";
 import AddOrder from "./AddOrder";
 import AddThing from "./AddThing";
 import { func } from "prop-types";
+import Win from "./Win.js";
 
 function App() {
   // Goals
@@ -19,15 +20,16 @@ function App() {
   const [placeChecked, setPlaceChecked] = useState(false);
   const [investorChecked, setInvestorChecked] = useState(false);
   const [changeGoalsOpen, setChangeGoalsOpen] = useState(false);
+  const [winOpen, setWinOpen] = useState(false);
 
   useEffect(() => {
     if (workers < 5 || !placeChecked) return;
     if (investorChecked && money + things >= 1000000) {
-      console.log("cos");
+      setWinOpen(true);
       return;
     }
     if (money + things >= 2000000) {
-      console.log("cos");
+      setWinOpen(true);
       return;
     }
     return;
@@ -190,6 +192,7 @@ function App() {
           addThing={addThing}
         />
       )}
+      {winOpen && <Win winOpen={winOpen} setWinOpen={setWinOpen} />}
     </div>
   );
 }

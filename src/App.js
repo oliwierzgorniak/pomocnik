@@ -4,7 +4,7 @@ import Orders from "./Orders.js";
 import Expanses from "./Expanses.js";
 import Credit from "./Credit.js";
 import Actions from "./Actions.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Expenses.css";
 import AddWorker from "./AddWorker.js";
 import AddOrder from "./AddOrder";
@@ -15,11 +15,29 @@ function App() {
   // Goals
   const [money, setMoney] = useState(10000);
   const [things, setThings] = useState(0);
+  const [workers, setWorkers] = useState(0);
+  const [placeChecked, setPlaceChecked] = useState(false);
+  const [investorChecked, setInvestorChecked] = useState(false);
+  const [changeGoalsOpen, setChangeGoalsOpen] = useState(false);
+
+  useEffect(() => {
+    if (workers < 5 || !placeChecked) return;
+    if (investorChecked && money + things >= 1000000) {
+      console.log("cos");
+      return;
+    }
+    if (money + things >= 2000000) {
+      console.log("cos");
+      return;
+    }
+    return;
+  }, [money, things, workers, placeChecked, investorChecked]);
 
   // Orders
-  const [multiplier, setMultiplier] = useState(1);
-  const [diceRolls, setDiceRolls] = useState(1);
-  const [bonus, setBonus] = useState(1000);
+  const [multiplier, setMultiplier] = useState(0);
+  const [diceRolls, setDiceRolls] = useState(0);
+  const [bonus, setBonus] = useState(0);
+  const [changeOrdersOpen, setChangeOrdersOpen] = useState(false);
 
   // Expanses
   const [insurance, setInsurance] = useState(0);
@@ -58,6 +76,7 @@ function App() {
     setMultiplier(multiplier + workerMultiplier);
     setSalary(salary + workerSalary);
     setInsurance(insurance + workerInsurance);
+    setWorkers(workers + 1);
     setAddWorkerOpen(false);
   };
 
@@ -91,8 +110,30 @@ function App() {
 
   return (
     <div className="App">
-      <Goals money={money} things={things} workers={0} />
-      <Orders multiplier={multiplier} diceRolls={diceRolls} bonus={bonus} />
+      <Goals
+        money={money}
+        setMoney={setMoney}
+        things={things}
+        setThings={setThings}
+        workers={workers}
+        setWorkers={setWorkers}
+        placeChecked={placeChecked}
+        setPlaceChecked={setPlaceChecked}
+        investorChecked={investorChecked}
+        setInvestorChecked={setInvestorChecked}
+        changeGoalsOpen={changeGoalsOpen}
+        setChangeGoalsOpen={setChangeGoalsOpen}
+      />
+      <Orders
+        multiplier={multiplier}
+        setMultiplier={setMultiplier}
+        diceRolls={diceRolls}
+        setDiceRolls={setDiceRolls}
+        bonus={bonus}
+        setBonus={setBonus}
+        changeOrdersOpen={changeOrdersOpen}
+        setChangeOrdersOpen={setChangeOrdersOpen}
+      />
       <Expanses
         insurance={insurance}
         setInsurance={setInsurance}

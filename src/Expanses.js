@@ -1,8 +1,6 @@
-import "./Expenses.css";
 import React from "react";
 import PropTypes from "prop-types";
 import change from "./img/change.svg";
-import "./Window.css";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
 
@@ -14,7 +12,7 @@ const Expanses = props => {
           <button
             onClick={() => props.setChangeExpensesOpen(true)}
             className="changeButton"
-            style={{ top: ".4rem", right: ".4rem" }}
+            style={{ top: "unset", bottom: ".2rem", right: ".4rem" }}
           >
             <img src={change}></img>
           </button>

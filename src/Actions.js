@@ -1,4 +1,3 @@
-import "./Actions.css";
 import worker from "./img/worker.svg";
 import order from "./img/order.svg";
 import buy from "./img/buy.svg";
@@ -16,7 +15,7 @@ const Actions = props => {
   };
 
   return (
-    <section className="actions">
+    <section className="container actions">
       <button
         onClick={() => {
           props.setAddOrderOpen(false);

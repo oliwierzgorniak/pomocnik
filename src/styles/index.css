@@ -27,7 +27,8 @@ li {
 }
 
 .container {
-  width: 90%;
+  width: 90vw;
+  max-width: 500px;
   margin: 0.4rem auto;
   padding: 0.4rem 0.5rem;
   border-radius: 6px;

@@ -1,50 +1,89 @@
-/* eslint-disable no-unused-vars */
 import Goals from "./Goals.js";
 import Orders from "./Orders.js";
 import Expanses from "./Expanses.js";
 import Credit from "./Credit.js";
 import Actions from "./Actions.js";
 import React, { useState, useEffect } from "react";
-import "./Expenses.css";
 import AddWorker from "./AddWorker.js";
 import AddOrder from "./AddOrder";
 import AddThing from "./AddThing";
-import { func } from "prop-types";
 import Win from "./Win.js";
+
+//styles
+import "./styles/Expenses.css";
+import "./styles/Goals.css";
+import "./styles/Window.css";
+import "./styles/Actions.css";
+
+import "./styles/media.css";
 
 function App() {
   // Goals
-  const [money, setMoney] = useState(10000);
-  const [things, setThings] = useState(0);
-  const [workers, setWorkers] = useState(0);
-  const [placeChecked, setPlaceChecked] = useState(false);
-  const [investorChecked, setInvestorChecked] = useState(false);
+  const [money, setMoney] = useState(() =>
+    localStorage.getItem("money")
+      ? parseInt(localStorage.getItem("money"))
+      : 10000
+  );
+
+  const [things, setThings] = useState(() =>
+    localStorage.getItem("things")
+      ? parseInt(localStorage.getItem("things"))
+      : 0
+  );
+
+  const [workers, setWorkers] = useState(() =>
+    localStorage.getItem("workers")
+      ? parseInt(localStorage.getItem("workers"))
+      : 0
+  );
+
+  {
+    /*CC BY-SA 4.0 Christian C. Salvadó, Cœur https://stackoverflow.com/questions/3263161/cannot-set-boolean-values-in-localstorage Changes were made.*/
+  }
+  const [placeChecked, setPlaceChecked] = useState(() => {
+    if (localStorage.getItem("placeChecked")) {
+      return JSON.parse(localStorage.getItem("placeChecked"));
+    } else return false;
+  });
+
+  const [investorChecked, setInvestorChecked] = useState(() => {
+    if (localStorage.getItem("investorChecked")) {
+      return JSON.parse(localStorage.getItem("investorChecked"));
+    } else return false;
+  });
   const [changeGoalsOpen, setChangeGoalsOpen] = useState(false);
   const [winOpen, setWinOpen] = useState(false);
 
-  useEffect(() => {
-    if (workers < 5 || !placeChecked) return;
-    if (investorChecked && money + things >= 1000000) {
-      setWinOpen(true);
-      return;
-    }
-    if (money + things >= 2000000) {
-      setWinOpen(true);
-      return;
-    }
-    return;
-  }, [money, things, workers, placeChecked, investorChecked]);
-
   // Orders
-  const [multiplier, setMultiplier] = useState(0);
-  const [diceRolls, setDiceRolls] = useState(0);
-  const [bonus, setBonus] = useState(0);
+  const [multiplier, setMultiplier] = useState(() =>
+    localStorage.getItem("multiplier")
+      ? parseInt(localStorage.getItem("multiplier"))
+      : 0
+  );
+  const [diceRolls, setDiceRolls] = useState(() =>
+    localStorage.getItem("diceRolls")
+      ? parseInt(localStorage.getItem("diceRolls"))
+      : 0
+  );
+  const [bonus, setBonus] = useState(() =>
+    localStorage.getItem("bonus") ? parseInt(localStorage.getItem("bonus")) : 0
+  );
   const [changeOrdersOpen, setChangeOrdersOpen] = useState(false);
 
   // Expanses
-  const [insurance, setInsurance] = useState(0);
-  const [salary, setSalary] = useState(0);
-  const [costs, setCosts] = useState(0);
+  const [insurance, setInsurance] = useState(() =>
+    localStorage.getItem("insurance")
+      ? parseInt(localStorage.getItem("insurance"))
+      : 0
+  );
+  const [salary, setSalary] = useState(() =>
+    localStorage.getItem("salary")
+      ? parseInt(localStorage.getItem("salary"))
+      : 0
+  );
+  const [costs, setCosts] = useState(() =>
+    localStorage.getItem("costs") ? parseInt(localStorage.getItem("costs")) : 0
+  );
   const [changeExpensesOpen, setChangeExpensesOpen] = useState(false);
 
   const payInsurance = () => {
@@ -56,13 +95,17 @@ function App() {
   };
 
   // Credit
-  const [credit1, setCredit1] = useState(0);
-  const [credit2, setCredit2] = useState(0);
+  const [credit1, setCredit1] = useState(() =>
+    localStorage.getItem("credit1")
+      ? parseInt(localStorage.getItem("credit1"))
+      : 0
+  );
+  const [credit2, setCredit2] = useState(() =>
+    localStorage.getItem("credit2")
+      ? parseInt(localStorage.getItem("credit2"))
+      : 0
+  );
   const [changeCreditOpen, setChangeCreditOpen] = useState(false);
-
-  const changeCredit = () => {
-    console.log(this);
-  };
 
   // Actions Add Worker
   const [addWorkerOpen, setAddWorkerOpen] = useState(false);
@@ -106,9 +149,77 @@ function App() {
 
   const addThing = () => {
     setThings(things + thingValue);
-    setAddThingOpen(false);
     setCosts(costs + thingCost);
+    setMoney(money - thingValue);
+    setAddThingOpen(false);
   };
+
+  // useEffects
+
+  useEffect(() => {
+    if (workers < 5 || !placeChecked) return;
+    if (investorChecked && money + things >= 1000000) {
+      setWinOpen(true);
+      return;
+    }
+    if (money + things >= 2000000) {
+      setWinOpen(true);
+      return;
+    }
+    return;
+  }, [money, things, workers, placeChecked, investorChecked]);
+
+  useEffect(() => {
+    localStorage.setItem("money", money);
+  }, [money]);
+
+  useEffect(() => {
+    localStorage.setItem("things", things);
+  }, [things]);
+
+  useEffect(() => {
+    localStorage.setItem("workers", workers);
+  }, [workers]);
+
+  useEffect(() => {
+    localStorage.setItem("investorChecked", investorChecked);
+  }, [investorChecked]);
+
+  useEffect(() => {
+    localStorage.setItem("placeChecked", placeChecked);
+  }, [placeChecked]);
+
+  useEffect(() => {
+    localStorage.setItem("multiplier", multiplier);
+  }, [multiplier]);
+
+  useEffect(() => {
+    localStorage.setItem("diceRolls", diceRolls);
+  }, [diceRolls]);
+
+  useEffect(() => {
+    localStorage.setItem("bonus", bonus);
+  }, [bonus]);
+
+  useEffect(() => {
+    localStorage.setItem("insurance", insurance);
+  }, [insurance]);
+
+  useEffect(() => {
+    localStorage.setItem("salary", salary);
+  }, [salary]);
+
+  useEffect(() => {
+    localStorage.setItem("costs", costs);
+  }, [costs]);
+
+  useEffect(() => {
+    localStorage.setItem("credit1", credit1);
+  }, [credit1]);
+
+  useEffect(() => {
+    localStorage.setItem("credit2", credit2);
+  }, [credit2]);
 
   return (
     <div className="App">
@@ -149,7 +260,6 @@ function App() {
         setChangeExpensesOpen={setChangeExpensesOpen}
       />
       <Credit
-        changeCredit={changeCredit}
         changeCreditOpen={changeCreditOpen}
         setChangeCreditOpen={setChangeCreditOpen}
         credit1={credit1}
@@ -174,6 +284,7 @@ function App() {
           addWorker={addWorker}
         />
       )}
+
       {addOrderOpen && (
         <AddOrder
           setAddOrderOpen={setAddOrderOpen}
@@ -182,6 +293,7 @@ function App() {
           addOrder={addOrder}
         />
       )}
+
       {addThingOpen && (
         <AddThing
           setAddThingOpen={setAddThingOpen}

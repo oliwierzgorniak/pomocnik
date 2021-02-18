@@ -1,12 +1,20 @@
-import "./Goals.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import change from "./img/change.svg";
-import "./Window.css";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
 
 const Goals = props => {
+  const placeCheckbox = useRef("");
+  useEffect(() => {
+    if (props.placeChecked) placeCheckbox.current.checked = true;
+  }, [props.placeChecked]);
+
+  const investorCheckbox = useRef("");
+  useEffect(() => {
+    if (props.investorChecked) investorCheckbox.current.checked = true;
+  }, [props.investorChecked]);
+
   return (
     <>
       <main className="container" style={{ background: "#3d5afe" }}>
@@ -29,7 +37,7 @@ const Goals = props => {
             <label htmlFor="place">Siedziba</label>
             <input
               onClick={() => props.setPlaceChecked(!props.placeChecked)}
-              className="checkbox"
+              ref={placeCheckbox}
               name="place"
               type="checkbox"
             />
@@ -38,6 +46,7 @@ const Goals = props => {
             <label htmlFor="investor">Inwestor</label>
             <input
               onClick={() => props.setInvestorChecked(!props.investorChecked)}
+              ref={investorCheckbox}
               name="investor"
               type="checkbox"
             />
@@ -52,7 +61,7 @@ const Goals = props => {
               <button
                 style={{ transform: "scale(.6)", margin: "0 -.2rem" }}
                 onClick={() => {
-                  if (props.money <= 1000) return;
+                  if (props.money < 1000) return;
                   props.setMoney(props.money - 1000);
                 }}
               >
@@ -66,12 +75,18 @@ const Goals = props => {
               >
                 <img src={less} alt="less"></img>
               </button>
-              <button onClick={() => props.setMoney(props.money + 10000)}>
+              <button
+                onClick={() => {
+                  props.setMoney(props.money + 10000);
+                }}
+              >
                 <img src={more} alt="more"></img>
               </button>
               <button
                 style={{ transform: "scale(.6)", margin: "0 -.2rem" }}
-                onClick={() => props.setMoney(props.money + 1000)}
+                onClick={() => {
+                  props.setMoney(props.money + 1000);
+                }}
               >
                 <img src={more} alt="more"></img>
               </button>

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./Window.css";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
 import x from "./img/x.svg";

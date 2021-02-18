@@ -1,5 +1,4 @@
 import React from "react";
-import "./Window.css";
 
 const Win = props => {
   return (

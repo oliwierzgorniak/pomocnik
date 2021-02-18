@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import change from "./img/change.svg";
-import "./Window.css";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
 
@@ -30,7 +29,7 @@ const Credit = props => {
               <button
                 style={{ transform: "scale(.6)", margin: "0 -.2rem" }}
                 onClick={() => {
-                  if (props.credit1 <= 1000) return;
+                  if (props.credit1 < 1000) return;
                   props.setCredit1(props.credit1 - 1000);
                 }}
               >
@@ -38,7 +37,7 @@ const Credit = props => {
               </button>
               <button
                 onClick={() => {
-                  if (props.credit1 <= 1000) return;
+                  if (props.credit1 < 10000) return;
                   props.setCredit1(props.credit1 - 10000);
                 }}
               >
@@ -61,7 +60,7 @@ const Credit = props => {
               <button
                 style={{ transform: "scale(.6)", margin: "0 -.2rem" }}
                 onClick={() => {
-                  if (props.credit2 <= 1000) return;
+                  if (props.credit2 < 1000) return;
                   props.setCredit2(props.credit2 - 1000);
                 }}
               >
@@ -69,7 +68,7 @@ const Credit = props => {
               </button>
               <button
                 onClick={() => {
-                  if (props.credit2 <= 1000) return;
+                  if (props.credit2 < 10000) return;
                   props.setCredit2(props.credit2 - 10000);
                 }}
               >

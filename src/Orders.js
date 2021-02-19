@@ -2,6 +2,7 @@ import React from "react";
 import change from "./img/change.svg";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
+import { CSSTransition } from "react-transition-group";
 
 const Orders = props => {
   return (
@@ -21,7 +22,12 @@ const Orders = props => {
           <ul>Dodatek: {props.bonus}</ul>
         </li>
       </section>
-      {props.changeOrdersOpen && (
+      <CSSTransition
+        in={props.changeOrdersOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <div className="window">
           <label htmlFor="multiplier">
             Mnożnik: <br /> <small>{props.multiplier}</small>
@@ -79,7 +85,7 @@ const Orders = props => {
             OK
           </button>
         </div>
-      )}
+      </CSSTransition>
     </>
   );
 };

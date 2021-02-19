@@ -8,6 +8,7 @@ import AddWorker from "./AddWorker.js";
 import AddOrder from "./AddOrder";
 import AddThing from "./AddThing";
 import Win from "./Win.js";
+import { CSSTransition } from "react-transition-group";
 
 //styles
 import "./styles/Expenses.css";
@@ -16,6 +17,7 @@ import "./styles/Window.css";
 import "./styles/Actions.css";
 
 import "./styles/media.css";
+import "./styles/transitions.css";
 
 function App() {
   // Goals
@@ -272,7 +274,13 @@ function App() {
         setAddOrderOpen={setAddOrderOpen}
         setAddThingOpen={setAddThingOpen}
       />
-      {addWorkerOpen && (
+
+      <CSSTransition
+        in={addWorkerOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <AddWorker
           setAddWorkerOpen={setAddWorkerOpen}
           workerMultiplier={workerMultiplier}
@@ -283,18 +291,28 @@ function App() {
           setWorkerInsurance={setWorkerInsurance}
           addWorker={addWorker}
         />
-      )}
+      </CSSTransition>
 
-      {addOrderOpen && (
+      <CSSTransition
+        in={addOrderOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <AddOrder
           setAddOrderOpen={setAddOrderOpen}
           orderValue={orderValue}
           setOrderValue={setOrderValue}
           addOrder={addOrder}
         />
-      )}
+      </CSSTransition>
 
-      {addThingOpen && (
+      <CSSTransition
+        in={addThingOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <AddThing
           setAddThingOpen={setAddThingOpen}
           thingValue={thingValue}
@@ -303,8 +321,16 @@ function App() {
           setThingCost={setThingCost}
           addThing={addThing}
         />
-      )}
-      {winOpen && <Win winOpen={winOpen} setWinOpen={setWinOpen} />}
+      </CSSTransition>
+
+      <CSSTransition
+        in={winOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
+        <Win winOpen={winOpen} setWinOpen={setWinOpen} />
+      </CSSTransition>
     </div>
   );
 }

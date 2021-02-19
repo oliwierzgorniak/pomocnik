@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import change from "./img/change.svg";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
+import { CSSTransition } from "react-transition-group";
 
 const Expanses = props => {
   return (
@@ -35,7 +36,12 @@ const Expanses = props => {
           style={{ background: "#F44336", gridRow: "2/3" }}
         ></button>
       </section>
-      {props.changeExpensesOpen && (
+      <CSSTransition
+        in={props.changeExpensesOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <div className="window">
           <label htmlFor="insurance">
             Ubezpieczenie: <br /> <small>{props.insurance}</small>
@@ -95,7 +101,7 @@ const Expanses = props => {
             OK
           </button>
         </div>
-      )}
+      </CSSTransition>
     </>
   );
 };

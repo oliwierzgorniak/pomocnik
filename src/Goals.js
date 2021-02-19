@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import change from "./img/change.svg";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
+import { CSSTransition } from "react-transition-group";
 
 const Goals = props => {
   const placeCheckbox = useRef("");
@@ -53,7 +54,12 @@ const Goals = props => {
           </div>
         </div>
       </main>
-      {props.changeGoalsOpen && (
+      <CSSTransition
+        in={props.changeGoalsOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <div className="window">
           <label htmlFor="money">
             Pieniądze: <br /> <small>{props.money}</small>
@@ -147,7 +153,7 @@ const Goals = props => {
             OK
           </button>
         </div>
-      )}
+      </CSSTransition>
     </>
   );
 };

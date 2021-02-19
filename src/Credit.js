@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import change from "./img/change.svg";
 import more from "./img/more.svg";
 import less from "./img/less.svg";
+import { CSSTransition } from "react-transition-group";
 
 const Credit = props => {
   return (
@@ -21,7 +22,12 @@ const Credit = props => {
           <ul>Kredyt 2: {props.credit2}</ul>
         </li>
       </section>
-      {props.changeCreditOpen && (
+      <CSSTransition
+        in={props.changeCreditOpen}
+        timeout={300}
+        classNames="window"
+        unmountOnExit
+      >
         <div className="window">
           <label htmlFor="credit1">
             Kredyt 1: <br /> <small>{props.credit1}</small>
@@ -93,7 +99,7 @@ const Credit = props => {
             OK
           </button>
         </div>
-      )}
+      </CSSTransition>
     </>
   );
 };

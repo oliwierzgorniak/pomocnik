@@ -5,7 +5,11 @@ const Win = props => {
     <div className="window">
       <h2>Wygrałeś! </h2>
       <button
-        onClick={() => props.setWinOpen(false)}
+        onClick={() => {
+          localStorage.clear();
+          props.setWinOpen(false);
+          window.location.reload();
+        }}
         className="window__action"
         style={{
           background: "#EF6C00",

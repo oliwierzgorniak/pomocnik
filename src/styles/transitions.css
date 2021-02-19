@@ -1,0 +1,17 @@
+.window-enter {
+  opacity: 0.2;
+}
+
+.window-enter-active {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.window-exit {
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+
+.window-exit-active {
+  opacity: 0;
+}
